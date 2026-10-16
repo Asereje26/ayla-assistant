@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface LlmEngine {
     val isReady: StateFlow<Boolean>
+    val lastError: StateFlow<String?>
     suspend fun initialize(modelPath: String)
     fun chat(messages: List<ChatMessage>): Flow<String>
 }
