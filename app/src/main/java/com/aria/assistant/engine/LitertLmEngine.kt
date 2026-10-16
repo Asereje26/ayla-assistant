@@ -33,7 +33,7 @@ class LitertLmEngine @Inject constructor(
     override val isReady: StateFlow<Boolean> = _isReady
 
     private val _lastError = MutableStateFlow<String?>(null)
-    val lastError: StateFlow<String?> = _lastError
+    override val lastError: StateFlow<String?> = _lastError
 
     override suspend fun initialize(modelPath: String): Unit = withContext(Dispatchers.IO) {
         initializationMutex.withLock {
