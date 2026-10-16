@@ -93,15 +93,6 @@ android {
         buildConfigField("String", "QUALITY_FEEDBACK_URL", "\"${qualityFeedbackUrl}\"")
         buildConfigField("String", "GITHUB_PROXY_URL", "\"${qualityFeedbackUrl}/\"")
 
-        // AdMob — falls back to Google's public test IDs so a checkout without
-        // local.properties still builds and shows test ads instead of failing.
-        val admobAppId = readProp("admob.app.id").ifBlank { "ca-app-pub-3940256099942544~3347511713" }
-        val admobBannerId = readProp("admob.banner.id").ifBlank { "ca-app-pub-3940256099942544/6300978111" }
-        val admobInterstitialId = readProp("admob.interstitial.id").ifBlank { "ca-app-pub-3940256099942544/1033173712" }
-
-        buildConfigField("String", "ADMOB_BANNER_AD_UNIT_ID", "\"${admobBannerId}\"")
-        buildConfigField("String", "ADMOB_INTERSTITIAL_AD_UNIT_ID", "\"${admobInterstitialId}\"")
-        manifestPlaceholders["adMobAppId"] = admobAppId
     }
 
     signingConfigs {
