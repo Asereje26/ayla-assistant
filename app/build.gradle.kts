@@ -192,7 +192,6 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation(libs.litertlm.android)
     implementation(libs.play.services.location)
-    implementation(libs.user.messaging.platform)
     implementation(libs.play.review.ktx)
     implementation(libs.mlkit.translate)
     implementation(platform(libs.firebase.bom))
