@@ -27,9 +27,6 @@ jobs:
           ./gradlew assembleDebug \
             -Pgithub.repo.owner=${{ secrets.GH_REPO_OWNER }} \
             -Pgithub.repo.name=${{ secrets.GH_REPO_NAME }} \
-            -Padmob.app.id=${{ secrets.ADMOB_APP_ID }} \
-            -Padmob.banner.id=${{ secrets.ADMOB_BANNER_AD_UNIT_ID }} \
-            -Padmob.interstitial.id=${{ secrets.ADMOB_INTERSTITIAL_AD_UNIT_ID }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
