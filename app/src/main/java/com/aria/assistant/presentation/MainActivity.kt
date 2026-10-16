@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
-import com.aria.assistant.billing.BillingManager
 import com.aria.assistant.domain.repository.SettingsRepository
 import com.aria.assistant.engine.AriaLogger
 import com.aria.assistant.presentation.screen.AriaNavHost
@@ -23,8 +22,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var billingManager: BillingManager
 
     @Inject
     lateinit var settingsRepository: SettingsRepository
@@ -36,7 +33,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         AriaLogger.d("MainActivity", "Activity onCreate")
-        billingManager.checkExistingPurchases()
         setContent {
             val onboardingComplete by settingsRepository.isOnboardingComplete().collectAsStateWithLifecycle(initialValue = false)
             val voiceConfig by settingsRepository.getVoiceConfig().collectAsStateWithLifecycle(
