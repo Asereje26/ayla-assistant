@@ -42,6 +42,15 @@ class OnboardingViewModel @Inject constructor(
     private val _downloadState = MutableStateFlow(OnboardingDownloadState())
     val downloadState: StateFlow<OnboardingDownloadState> = _downloadState.asStateFlow()
 
+    private fun reportInitializationError(message: String) {
+    _downloadState.value = _downloadState.value.copy(
+        isDownloading = false,
+        isInitializing = false,
+        isReady = false,
+        error = message
+    )
+}
+
     private val _voiceConfig = MutableStateFlow(VoiceConfig())
     val voiceConfig: StateFlow<VoiceConfig> = _voiceConfig.asStateFlow()
     val supportedUiLanguages: List<UiLanguage> = translationManager.supportedLanguages
@@ -103,7 +112,14 @@ class OnboardingViewModel @Inject constructor(
                 }
             }
         }
+        
+    viewModelScope.launch {
+    llmEngine.lastError.collect { error ->
+        if (error != null) {
+            reportInitializationError(error)
+        }
     }
+}
 
     fun startModelDownload() {
         if (_downloadState.value.isDownloading || _downloadState.value.isReady) return
