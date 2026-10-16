@@ -113,13 +113,14 @@ class OnboardingViewModel @Inject constructor(
             }
         }
         
-    viewModelScope.launch {
-    llmEngine.lastError.collect { error ->
-        if (error != null) {
-            reportInitializationError(error)
+            viewModelScope.launch {
+            llmEngine.lastError.collect { error ->
+                if (error != null) {
+                    reportInitializationError(error)
+                }
+            }
         }
     }
-}
 
     fun startModelDownload() {
         if (_downloadState.value.isDownloading || _downloadState.value.isReady) return
