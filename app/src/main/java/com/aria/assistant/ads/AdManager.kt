@@ -47,5 +47,3 @@ class AdManager @Inject constructor(
         // AYLA no muestra anuncios intersticiales.
     }
 }
-
-}
