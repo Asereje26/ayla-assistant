@@ -71,8 +71,8 @@ class LitertLmEngine @Inject constructor(
 
     private fun initializeWithFallback(modelPath: String): Engine {
         val attempts = listOf(
-            "GPU" to { EngineConfig(modelPath, Backend.GPU()) },
             "CPU" to { EngineConfig(modelPath, Backend.CPU()) },
+            "GPU" to { EngineConfig(modelPath, Backend.GPU()) },
         )
         var lastFailure: Exception? = null
         for ((name, createConfig) in attempts) {
